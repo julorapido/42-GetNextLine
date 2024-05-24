@@ -6,7 +6,7 @@
 /*   By: julessainthorant <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:51:28 by julessainthor     #+#    #+#             */
-/*   Updated: 2024/04/05 23:23:55 by julessainthor    ###   ########.fr       */
+/*   Updated: 2024/05/24 14:56:55 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -16,7 +16,7 @@ size_t	ft_strlen(char *s)
 	size_t	i;
 
 	i = 0;
-	if (s[0] == '\0')
+	if (!s)
 		return (0);
 	while (s[i])
 		i++;
@@ -33,7 +33,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	i = 0;
 	sizetotal = ft_strlen(s1) + ft_strlen(s2);
 	res = malloc(sizeof(char) * (sizetotal + 1));
-	if (!res || !s2)
+	if (!res)
 		return (NULL);
 	while (s1[i] != 0)
 	{
@@ -62,4 +62,29 @@ char	*ft_strchr(const char *string, int searchedChar )
 		return (str);
 	else
 		return (NULL);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*c_alloc;
+	size_t	i;
+
+	if (size > 2147483647 || count > 2147483647)
+		return (NULL);
+	if (size == 0 || count == 0)
+	{
+		c_alloc = (void *)(malloc (1));
+		*(unsigned char *)(c_alloc) = 0;
+		return (c_alloc);
+	}
+	c_alloc = (void *)(malloc(count * size));
+	if (!c_alloc)
+		return (NULL);
+	i = 0;
+	while (i < (size * count))
+	{
+		*(unsigned char *)(c_alloc + i) = 0;
+		i++;
+	}
+	return (c_alloc);
 }

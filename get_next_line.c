@@ -6,19 +6,21 @@
 /*   By: julessainthorant <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 10:14:25 by julessainthor     #+#    #+#             */
-/*   Updated: 2024/04/05 23:33:17 by julessainthor    ###   ########.fr       */
+/*   Updated: 2024/05/24 14:55:31 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
 
-//#include <stdio.h>
-//#include <fcntl.h>
-//#define BUFFER_SIZE 1
+/*#include <stdio.h>
+#include <fcntl.h>
+#define BUFFER_SIZE 1*/
 
 char	*ft_free(char *buffer, char *buf)
 {
 	char	*temp;
 
+	if (buf == NULL)
+		return (NULL);
 	temp = ft_strjoin(buffer, buf);
 	free(buffer);
 	return (temp);
@@ -38,7 +40,7 @@ char	*ft_next_line(char *s_bfr)
 		free(s_bfr);
 		return (NULL);
 	}
-	next_line = (char *)malloc((ft_strlen(s_bfr) - i) + 1 * (sizeof(char)));
+	next_line = (char *)ft_calloc((ft_strlen(s_bfr) - i) + 1, (sizeof(char)));
 	i++;
 	j = 0;
 	while (s_bfr[i])
@@ -57,7 +59,7 @@ char	*ft_line(char *buffer)
 		return (NULL);
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	s = (char *) malloc((i + 2) * sizeof(char));
+	s = (char *) ft_calloc((i + 2), sizeof(char));
 	i = 0;
 	while (buffer[i] && buffer[i] != '\n')
 	{
@@ -75,12 +77,17 @@ char	*read_file(int fd_, char *s)
 	int		bytes_r;
 
 	if (!s)
-		s = (char *) malloc(1 * sizeof(char));
-	b = (char *)(malloc(BUFFER_SIZE + 1 * sizeof(char)));
+		s = (char *) ft_calloc(1, sizeof(char));
+	b = (char *)(ft_calloc(BUFFER_SIZE + 1, sizeof(char)));
 	bytes_r = 1;
 	while (bytes_r > 0)
 	{
 		bytes_r = read(fd_, b, BUFFER_SIZE);
+		if (bytes_r == -1)
+		{
+			free(b);
+			return (NULL);
+		}
 		b[bytes_r] = '\0';
 		s = ft_free(s, b);
 		if (ft_strchr(b, '\n'))
@@ -104,6 +111,7 @@ char	*get_next_line(int fd)
 	bfr = ft_next_line(bfr);
 	return (line);
 }
+
 /*
 int main(int argc, char **argv)
 {
@@ -117,6 +125,7 @@ int main(int argc, char **argv)
     else{
 		printf("\nFile %s opened sucessfully!\n", fileName);
     }
+	fd = 0;
 	printf("%s \n", get_next_line(fd));
 	printf("%s \n", get_next_line(fd));
 	printf("%s \n", get_next_line(fd));
