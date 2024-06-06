@@ -6,7 +6,7 @@
 /*   By: julessainthorant <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 10:14:25 by julessainthor     #+#    #+#             */
-/*   Updated: 2024/06/06 12:36:13 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/06/06 15:02:18 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -103,7 +103,7 @@ char	*get_next_line(int fd)
 	static char	*bfr;
 	char		*line;
 
-	if(read(fd, 0, 0) < 0)
+	if (read(fd, 0, 0) < 0)
 	{
 		free(bfr);
 		bfr = NULL;
