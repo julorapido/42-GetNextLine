@@ -6,7 +6,7 @@
 /*   By: julessainthorant <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 10:14:25 by julessainthor     #+#    #+#             */
-/*   Updated: 2024/05/24 14:55:31 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:36:13 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -86,6 +86,7 @@ char	*read_file(int fd_, char *s)
 		if (bytes_r == -1)
 		{
 			free(b);
+			free(s);
 			return (NULL);
 		}
 		b[bytes_r] = '\0';
@@ -102,6 +103,12 @@ char	*get_next_line(int fd)
 	static char	*bfr;
 	char		*line;
 
+	if(read(fd, 0, 0) < 0)
+	{
+		free(bfr);
+		bfr = NULL;
+		return (NULL);
+	}
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	bfr = read_file(fd, bfr);
