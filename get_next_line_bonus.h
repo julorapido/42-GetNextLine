@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julessainthorant <marvin@42.fr>            +#+  +:+       +#+        */
+/*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/05 14:52:22 by julessainthor     #+#    #+#             */
-/*   Updated: 2024/06/07 17:22:00 by jsaintho         ###   ########.fr       */
+/*   Created: 2024/06/07 17:30:56 by jsaintho          #+#    #+#             */
+/*   Updated: 2024/06/07 17:31:11 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 # include <stdlib.h>
 # include <sys/types.h>
 # include <sys/uio.h>
@@ -25,3 +25,4 @@ size_t	ft_strlen(char *s);
 void	*ft_calloc(size_t elementCount, size_t elementSize);
 
 #endif
+

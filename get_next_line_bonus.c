@@ -1,15 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julessainthorant <marvin@42.fr>            +#+  +:+       +#+        */
+/*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/05 10:14:25 by julessainthor     #+#    #+#             */
-/*   Updated: 2024/06/07 17:24:31 by jsaintho         ###   ########.fr       */
+/*   Created: 2024/06/07 17:25:18 by jsaintho          #+#    #+#             */
+/*   Updated: 2024/06/07 17:37:07 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
+
+#include "get_next_line_bonus.h"
 
 /*#include <stdio.h>
 #include <fcntl.h>
@@ -100,44 +101,23 @@ char	*read_file(int fd_, char *s)
 
 char	*get_next_line(int fd)
 {
-	static char	*bfr;
+	static char	*bfr[257];
 	char		*line;
 
-	if (read(fd, 0, 0) < 0)
+	/*if (read(fd, 0, 0) < 0)
 	{
-		free(bfr);
-		bfr = NULL;
+		free(bfr[fd]);
+		bfr[fd] = NULL;
 		return (NULL);
-	}
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	}*/
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0 || fd > 256)
 		return (NULL);
-	bfr = read_file(fd, bfr);
-	if (!bfr)
+	bfr[fd] = read_file(fd, bfr[fd]);
+	if (!bfr[fd])
 		return (NULL);
-	line = ft_line(bfr);
-	bfr = ft_next_line(bfr);
+	line = ft_line(bfr[fd]);
+	bfr[fd] = ft_next_line(bfr[fd]);
 	return (line);
 }
 
-/*
-int main(int argc, char **argv)
-{
-	char* fileName = "file.txt";
-    int fd = open(fileName, O_RDWR);
 
-    if(fd == -1){
-		printf("\nError Opening File!!\n");
-		exit(1);
-    }
-    else{
-		printf("\nFile %s opened sucessfully!\n", fileName);
-    }
-	fd = 0;
-	printf("%s \n", get_next_line(fd));
-	printf("%s \n", get_next_line(fd));
-	printf("%s \n", get_next_line(fd));
-	printf("%s \n", get_next_line(fd));
-	printf("%s \n", get_next_line(fd));
-	printf("%s \n", get_next_line(fd));
-	return 0;
-}*/
