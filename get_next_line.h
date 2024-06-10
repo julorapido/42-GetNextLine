@@ -6,7 +6,7 @@
 /*   By: julessainthorant <marvin@42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:52:22 by julessainthor     #+#    #+#             */
-/*   Updated: 2024/06/07 17:22:00 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/06/10 14:50:36 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
-# define BUFF_SIZE 10
+# define BUFFER_SIZE 10
 
 char	*get_next_line(int fd);
 char	*ft_strjoin(char *s1, char *s2);
