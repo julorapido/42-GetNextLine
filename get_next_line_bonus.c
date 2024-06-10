@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 17:25:18 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/06/07 17:37:07 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/06/10 14:48:43 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,16 +101,10 @@ char	*read_file(int fd_, char *s)
 
 char	*get_next_line(int fd)
 {
-	static char	*bfr[257];
+	static char	*bfr[216];
 	char		*line;
 
-	/*if (read(fd, 0, 0) < 0)
-	{
-		free(bfr[fd]);
-		bfr[fd] = NULL;
-		return (NULL);
-	}*/
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0 || fd > 256)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 216)
 		return (NULL);
 	bfr[fd] = read_file(fd, bfr[fd]);
 	if (!bfr[fd])
@@ -119,5 +113,3 @@ char	*get_next_line(int fd)
 	bfr[fd] = ft_next_line(bfr[fd]);
 	return (line);
 }
-
-

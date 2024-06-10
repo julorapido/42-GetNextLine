@@ -6,7 +6,7 @@
 /*   By: jsaintho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 17:30:56 by jsaintho          #+#    #+#             */
-/*   Updated: 2024/06/07 17:31:11 by jsaintho         ###   ########.fr       */
+/*   Updated: 2024/06/10 14:32:23 by jsaintho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,3 @@ size_t	ft_strlen(char *s);
 void	*ft_calloc(size_t elementCount, size_t elementSize);
 
 #endif
-
